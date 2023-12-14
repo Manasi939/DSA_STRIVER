@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+int top=-1;
+const int size=5;
+int arr_size=0;
+int arr[size];
+void push(int element)
+{
+      if(arr_size<(size))
+      {
+         arr[++top] =element;
+         arr_size+=1;
+      }
+      else{
+          cout<<"Overflow\n";
+      }
+}
+void display()
+{
+    for(int i=0;i<arr_size;i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+}
+void pop()
+{
+    if(top!=-1)
+    {
+       top=top-1; 
+       arr_size-=1;
+    }
+    else{
+        cout<<"underflow";
+    }
+}
+int main()
+{
+  int element=0;
+  int cont=1;
+  
+  cout<<"Enter element\n";
+  cin>>element; 
+  
+  push(element);
+  //display();
+  
+  push(8);
+    
+  push(3);
+  push(3);
+  push(3);
+  push(3);
+  display();
+  
+  cout<<"pop";
+  
+  pop();
+   pop();
+  pop();
+  pop();
+  display();
+  
+    
+}
