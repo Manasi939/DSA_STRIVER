@@ -1,15 +1,18 @@
 #include <iostream>
 using namespace std;
-int top=-1;
+int rear=0;
+int front=0;
 const int size=5;
-int arr_size=0;
+int count=0;
 int arr[size];
 void push(int element)
 {
-      if(arr_size<size)
+      if(count<size)
       {
-          arr[++top]=element;
-          arr_size+=1;
+          arr[rear]=element;
+          rear=(rear+1)%size;
+          count++;
+          
       }
       else{
           cout<<"overflow";
@@ -17,38 +20,36 @@ void push(int element)
 }
 void display()
 {
-    if(top==-1)
+    if(count==0)
     {
         cout<<"empty array";
     }
     else{
         cout<<"ARRAY:\n";
+         if(rear==0)
+    {
+        rear=size;
     }
-    for(int i=0;i<arr_size;i++)
+    for(int i=front;i<=((rear-1)%size);i++)
     {
         cout<<arr[i]<<endl;
+        
     }
+    }
+   
 }
 void pop()
 {
+    cout<<count;
    
-    if(top==0)
+    if(count!=0)
     {
-       top=top-1;
-       arr_size-=1;
-    }
-    else if(top!=-1){
-       int i=1;
-       while(i<=top)
-       {
-           arr[i-1]=arr[i];
-           i++;
-       }
-       top=top-1;
-       arr_size-=1;
+        cout<<"Popped: "<<arr[front]<<endl;
+       front=(front+1)%size;
+       count--;
     }
     else{
-        cout<<"underflow";
+        cout<<"underflow\n";
     }
     
 }
@@ -65,6 +66,8 @@ int main()
   
   push(8);
   push(78);
+  push(1);
+  push(2);
   display();
   
   cout<<"POP\n";
@@ -75,4 +78,11 @@ int main()
   cout<<"POP\n";
     pop();
     display();
+    pop();
+    display();
+    pop();
+    display();
+     pop();
+    display();
+   
 }
