@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+int top=-1;
+const int size=5;
+int arr_size=0;
+int arr[size];
+void push(int element)
+{
+      if(arr_size<size)
+      {
+          arr[++top]=element;
+          arr_size+=1;
+      }
+      else{
+          cout<<"overflow";
+      }
+}
+void display()
+{
+    if(top==-1)
+    {
+        cout<<"empty array";
+    }
+    else{
+        cout<<"ARRAY:\n";
+    }
+    for(int i=0;i<arr_size;i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+}
+void pop()
+{
+   
+    if(top==0)
+    {
+       top=top-1;
+       arr_size-=1;
+    }
+    else if(top!=-1){
+       int i=1;
+       while(i<=top)
+       {
+           arr[i-1]=arr[i];
+           i++;
+       }
+       top=top-1;
+       arr_size-=1;
+    }
+    else{
+        cout<<"underflow";
+    }
+    
+}
+int main()
+{
+  int element=0;
+  int cont=1;
+  
+  cout<<"Enter element\n";
+  cin>>element; 
+  
+  push(element);
+  //display();
+  
+  push(8);
+  push(78);
+  display();
+  
+  cout<<"POP\n";
+  
+  pop();
+  display();
+ 
+  cout<<"POP\n";
+    pop();
+    display();
+}
